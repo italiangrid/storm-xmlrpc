@@ -99,11 +99,15 @@ This package contains some handy XML-RPC demo applications.
 
 %setup -c
 
+%build
+
+
 %install
 mkdir -p $RPM_BUILD_ROOT%_mandir/storm/man1/
-mv $RPM_BUILD_ROOT/usr/man/storm/man1/* $RPM_BUILD_ROOT%_mandir/storm/man1/
+#cp $RPM_BUILD_ROOT/usr/man/storm/man1/* $RPM_BUILD_ROOT%_mandir/storm/man1/
 
 %clean
+rm -rf $RPM_BUILD_ROOT
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -123,6 +127,9 @@ mv $RPM_BUILD_ROOT/usr/man/storm/man1/* $RPM_BUILD_ROOT%_mandir/storm/man1/
 %_libdir/storm/*.so.3*
 %exclude %_libdir/storm/*.a
 %exclude %_libdir/storm/libxmlrpc_client.so*
+%exclude /debugfiles.list
+%exclude /debuglinks.list
+%exclude /debugsources.list
 
 %files client
 %defattr(-,root,root,-)
@@ -149,12 +156,13 @@ mv $RPM_BUILD_ROOT/usr/man/storm/man1/* $RPM_BUILD_ROOT%_mandir/storm/man1/
 %defattr(-,root,root,-)
 #%doc tools/xmlrpc/xmlrpc.html
 #%doc tools/xmlrpc_transport/xmlrpc_transport.html
-%_mandir/storm/man1/*
+#%_mandir/storm/man1/*
 %_bindir/storm/xmlrpc
 %_bindir/storm/xmlrpc_transport
 %_bindir/storm/xml-rpc-api2cpp
 %_bindir/storm/xmlrpc_cpp_proxy
 %_bindir/storm/xml-rpc-api2txt
+%exclude /usr/man/storm/man1/*
 
 %changelog
 * Mon Sep 27 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it> - %version-%release
