@@ -119,39 +119,39 @@ This package contains some handy XML-RPC demo applications.
 %files
 %defattr(-,root,root,-)
 %doc doc/*
-%_libdir/*.so.3*
-%exclude %_libdir/libxmlrpc_client.so*
+%_libdir/storm/*.so.3*
+%exclude %_libdir/storm/libxmlrpc_client.so*
 
 %files client
 %defattr(-,root,root,-)
-%_libdir/libxmlrpc_client.so.*
+%_libdir/storm/libxmlrpc_client.so.*
 
 %files c++
 %defattr(-,root,root,-)
-%_libdir/*.so.7*
-%exclude %_libdir/libxmlrpc_client++.so*
+%_libdir/storm/*.so.7*
+%exclude %_libdir/storm/libxmlrpc_client++.so*
 
 %files client++
 %defattr(-,root,root,-)
-%_libdir/libxmlrpc_client++.so.*
+%_libdir/storm/libxmlrpc_client++.so.*
 
 %files devel
 %defattr(-,root,root,-)
-%_bindir/xmlrpc-c-config
-%_includedir/xmlrpc-c
-%_includedir/*.h
-%_libdir/*.so
+%_bindir/storm/xmlrpc-c-config
+%_includedir/storm/xmlrpc-c
+%_includedir/storm/*.h
+%_libdir/storm/*.so
 
 %files apps
 %defattr(-,root,root,-)
 %doc tools/xmlrpc/xmlrpc.html
 %doc tools/xmlrpc_transport/xmlrpc_transport.html
-%_mandir/man1/*
-%_bindir/xmlrpc
-%_bindir/xmlrpc_transport
-%_bindir/xml-rpc-api2cpp
-%_bindir/xmlrpc_cpp_proxy
-%_bindir/xml-rpc-api2txt
+%_mandir/storm/man1/*
+%_bindir/storm/xmlrpc
+%_bindir/storm/xmlrpc_transport
+%_bindir/storm/xml-rpc-api2cpp
+%_bindir/storm/xmlrpc_cpp_proxy
+%_bindir/storm/xml-rpc-api2txt
 
 %changelog
 * Mon Sep 27 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it> - %version-%release
