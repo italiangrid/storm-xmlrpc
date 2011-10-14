@@ -51,13 +51,13 @@ Requires: %name-client++ = %version-%release
 Requires: libxml2-devel curl-devel
 Requires: pkgconfig
 
-#%package apps
-#Summary:  Sample XML-RPC applications
-#Group:    Applications/Internet
-#Requires: %name = %version-%release
-#Requires: %name-c++ = %version-%release
-#Requires: %name-client = %version-%release
-#Requires: %name-client++ = %version-%release
+%package apps
+Summary:  Sample XML-RPC applications
+Group:    Applications/Internet
+Requires: %name = %version-%release
+Requires: %name-c++ = %version-%release
+Requires: %name-client = %version-%release
+Requires: %name-client++ = %version-%release
 
 %description
 XML-RPC is a quick-and-easy way to make procedure calls over the
@@ -88,11 +88,11 @@ clients.
 Static libraries and header files for writing XML-RPC applications in
 C and C++.
 
-#%description apps
-#XML-RPC is a quick-and-easy way to make procedure calls over the
-#Internet. It converts the procedure call into XML document, sends it
-#to a remote server using HTTP, and gets back the response as XML.
-#This package contains some handy XML-RPC demo applications.
+%description apps
+XML-RPC is a quick-and-easy way to make procedure calls over the
+Internet. It converts the procedure call into XML document, sends it
+to a remote server using HTTP, and gets back the response as XML.
+This package contains some handy XML-RPC demo applications.
 
 %prep
 
@@ -100,7 +100,8 @@ C and C++.
 %setup -c
 
 %install
-
+mkdir -p $RPM_BUILD_ROOT%_mandir/storm/man1/
+mv $RPM_BUILD_ROOT/usr/man/storm/man1/* $RPM_BUILD_ROOT%_mandir/storm/man1/
 
 %clean
 
@@ -118,7 +119,7 @@ C and C++.
 
 %files
 %defattr(-,root,root,-)
-%doc doc/*
+#%doc doc/*
 %_libdir/storm/*.so.3*
 %exclude %_libdir/storm/*.a
 %exclude %_libdir/storm/libxmlrpc_client.so*
@@ -144,16 +145,16 @@ C and C++.
 %_libdir/storm/*.so
 %exclude %_libdir/storm/*.a
 
-#%files apps
-#%defattr(-,root,root,-)
+%files apps
+%defattr(-,root,root,-)
 #%doc tools/xmlrpc/xmlrpc.html
 #%doc tools/xmlrpc_transport/xmlrpc_transport.html
-#%_mandir/storm/man1/*
-#%_bindir/storm/xmlrpc
-#%_bindir/storm/xmlrpc_transport
-#%_bindir/storm/xml-rpc-api2cpp
-#%_bindir/storm/xmlrpc_cpp_proxy
-#%_bindir/storm/xml-rpc-api2txt
+%_mandir/storm/man1/*
+%_bindir/storm/xmlrpc
+%_bindir/storm/xmlrpc_transport
+%_bindir/storm/xml-rpc-api2cpp
+%_bindir/storm/xmlrpc_cpp_proxy
+%_bindir/storm/xml-rpc-api2txt
 
 %changelog
 * Mon Sep 27 2011 Elisabetta Ronchieri <elisabetta.ronchieri@cnaf.infn.it> - %version-%release
