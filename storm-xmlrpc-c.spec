@@ -4,7 +4,7 @@
 #%{!?release_func:%global release_func() %1%{?dist}}
 
 Summary: A lightweight RPC library based on XML and HTTP.
-Name: emi-storm-xmlrpc-c
+Name: storm-xmlrpc-c
 Version: 1.25.10
 Release: 1206.2181.sl5
 License: BSD and MIT
