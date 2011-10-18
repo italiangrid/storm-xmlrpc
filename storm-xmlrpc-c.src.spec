@@ -13,9 +13,9 @@ Group: System Environment/Libraries
 Packager: Elisabetta Ronchieri
 URL:     http://xmlrpc-c.sourceforge.net/
 BuildArch: x86_64
-BuildRoot: %{_builddir}/%{name}-%{version}
+BuildRoot: %{_builddir}/var/tmp/%{name}-%{version}
 AutoReqProv: yes
-Source: %name-%version-%release.tar.gz
+Source: %name-%version-%release.src.tar.gz
 #BuildRoot: %_tmppath/%name-${version}-%release-root
 BuildRequires: curl-devel
 BuildRequires: libxml2-devel
@@ -95,10 +95,11 @@ to a remote server using HTTP, and gets back the response as XML.
 This package contains some handy XML-RPC demo applications.
 
 %prep
-
-
-%setup -c
+%setup -q
 rm doc/{INSTALL,configure_doc}
+
+#%setup -n @PACKAGE@-%{version}
+#rm doc/{INSTALL,configure_doc}
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS"
@@ -117,10 +118,10 @@ make install DESTDIR=$RPM_BUILD_ROOT
 cd tools
 make install DESTDIR=$RPM_BUILD_ROOT
 cd ..
-install -m 755 %{SOURCE1} ${RPM_BUILD_ROOT}%_bindir
+#install -m 755 %{SOURCE1} ${RPM_BUILD_ROOT}%_bindir
 
-chmod +x $RPM_BUILD_ROOT%_libdir/*.so
-rm -f $RPM_BUILD_ROOT%_libdir/*.a
+chmod +x $RPM_BUILD_ROOT%_libdir/storm/*.so
+rm -f $RPM_BUILD_ROOT%_libdir/storm/*.a
 
 mkdir -p $RPM_BUILD_ROOT%_mandir/storm/man1/
 #cp $RPM_BUILD_ROOT/usr/man/storm/man1/* $RPM_BUILD_ROOT%_mandir/storm/man1/
@@ -145,9 +146,6 @@ rm -rf $RPM_BUILD_ROOT
 #%doc doc/*
 %_libdir/storm/*.so.3*
 %exclude %_libdir/storm/libxmlrpc_client.so*
-%exclude /debugfiles.list
-%exclude /debuglinks.list
-%exclude /debugsources.list
 
 %files client
 %defattr(-,root,root,-)
