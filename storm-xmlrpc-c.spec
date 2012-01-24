@@ -17,7 +17,7 @@ URL:     http://xmlrpc-c.sourceforge.net/
 BuildArch: x86_64
 BuildRoot: %{_builddir}/%{name}-%{version}
 AutoReqProv: yes
-Source: %name-%version-%release.tar.gz
+Source: %name-%version.tar.gz
 #BuildRoot: %_tmppath/%name-${version}-%release-root
 BuildRequires: curl-devel
 BuildRequires: libxml2-devel
