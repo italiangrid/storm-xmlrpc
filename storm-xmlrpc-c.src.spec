@@ -3,10 +3,12 @@
 
 #%{!?release_func:%global release_func() %1%{?dist}}
 
+%define myos() %(echo sl`cat /etc/redhat-release | awk 'BEGIN {FS="release "} {print $2}'| awk 'BEGIN {FS="."} {print $1}'`)
+
 Summary: A lightweight RPC library based on XML and HTTP.
 Name: storm-xmlrpc-c
 Version: 1.25.10
-Release: 1206.2181.sl5
+Release: 1206.2181.%{myos}
 License: BSD and MIT
 Vendor: EMI
 Group: System Environment/Libraries
