@@ -8,7 +8,7 @@
 Summary: A lightweight RPC library based on XML and HTTP.
 Name: storm-xmlrpc-c
 Version: 1.25.10
-Release: 1206.2181.%{myos}
+Release: 1206.2181.1.%{myos}
 License: BSD and MIT
 Vendor: EMI
 Group: System Environment/Libraries
