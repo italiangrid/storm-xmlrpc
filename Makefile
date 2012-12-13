@@ -21,27 +21,27 @@ osdist=`cat /etc/redhat-release | awk -F "release " '{ print $$2 }' | awk -F "."
 all: storm-xmlrpc-c-rpm
 
 storm-xmlrpc-c-rpm: storm-xmlrpc-c-srpm
-	@rpmbuild  --rebuild --define "_topdir $(RPM_MAIN_DIR)" --define "dist .el$(osdist)"  $(RPM_SRPM)/emi-storm-backend-mp-$(BACKEND_VERSION)-$(BACKEND_AGE).src.rpm
+	@rpmbuild  --rebuild --define "_topdir $(RPM_MAIN_DIR)" --define "dist .el$(osdist)"  $(RPM_SRPM)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(PACKAGE_AGE)*.src.rpm
 
 storm-xmlrpc-c-srpm: rpm-path checkout src-tar
 	@cp -u $(MODULE_NAME)/tgz/$(PACKAGE_NAME)-$(PACKAGE_VERSION).src.tar.gz $(RPM_SOURCE)
 	@cp $(SPEC_STORM_XMLRPC_C_FILE) $(RPM_SPEC)
-	@rpmbuild  --define "_topdir $(RPM_MAIN_DIR)" --nodeps -bs $(RPM_SPEC)/$(PEC_STORM_XMLRPC_C_FILE)
+	@rpmbuild  --define "_topdir $(RPM_MAIN_DIR)" --nodeps -bs $(RPM_SPEC)/$(SPEC_STORM_XMLRPC_C_FILE)
 
 checkout:
-	@svn co $(XMLRPC_C_SERVER)/$(XMLRPC_C_TAG) $(MODULE_ANME)
+	@svn co $(XMLRPC_C_SERVER)/$(XMLRPC_C_TAG) $(MODULE_NAME)
 
 src-tar:
-	@cd $(MODULE_NAME)
-	@mkdir -p tgz/$(PACKAGE_NAME)-$(PACKAGE_VERSION)
-	@tar -czf tgz/$(PACKAGE_NAME)-$(PACKAGE_VERSION)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(PACKAGE_AGE).src.tar.gz --exclude=.svn `ls | grep -v tgz$ | grep -v etics-tmp$ | grep -v etics.log$ `
-	@cd tgz/$(PACKAGE_NAME)-$(PACKAGE_VERSION)
-	@tar -zxvf $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(PACKAGE_AGE).src.tar.gz
-	@rm $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(PACKAGE_AGE).src.tar.gz
-	@ cd ..
-	@tar -czf $(PACKAGE_NAME)-$(PACKAGE_VERSION).src.tar.gz $(PACKAGE_NAME)-$(PACKAGE_VERSION)
-	@rm -rf $(PACKAGE_NAME)-$(PACKAGE_VERSION)
-	@cd ../..
+	@cd $(MODULE_NAME); \
+	mkdir -p tgz/$(PACKAGE_NAME)-$(PACKAGE_VERSION); \
+	tar -czf tgz/$(PACKAGE_NAME)-$(PACKAGE_VERSION)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(PACKAGE_AGE).src.tar.gz --exclude=.svn `ls | grep -v tgz$ | grep -v etics-tmp$ | grep -v etics.log$ `; \
+	cd tgz/$(PACKAGE_NAME)-$(PACKAGE_VERSION); \
+	tar -zxvf $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(PACKAGE_AGE).src.tar.gz; \
+	rm $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(PACKAGE_AGE).src.tar.gz;\
+	cd ..;\
+	tar -czf $(PACKAGE_NAME)-$(PACKAGE_VERSION).src.tar.gz $(PACKAGE_NAME)-$(PACKAGE_VERSION);\
+	rm -rf $(PACKAGE_NAME)-$(PACKAGE_VERSION);\
+	cd ../..
 
 rpm-path:
 	@mkdir -p $(RPM_DIRS)
