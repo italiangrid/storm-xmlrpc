@@ -5,7 +5,7 @@ PACKAGE_VERSION := 1.33.0
 MODULE_NAME := xmlrpc-c
 SPEC_STORM_XMLRPC_C_FILE := storm-xmlrpc-c.src.spec
 
-RPM_MAIN_DIR := $(PWD)/rpm-build-test
+RPM_MAIN_DIR := $(PWD)/rpmbuild
 RPM_SOURCE := $(RPM_MAIN_DIR)/SOURCES
 RPM_SPEC := $(RPM_MAIN_DIR)/SPECS
 RPM_BUILD := $(RPM_MAIN_DIR)/BUILD
