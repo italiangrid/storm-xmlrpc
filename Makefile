@@ -1,6 +1,6 @@
 PACKAGE_NAME := storm-xmlrpc-c
-PACKAGE_AGE := 1
-PACKAGE_VERSION := 1.33.0
+PACKAGE_AGE := 0
+PACKAGE_VERSION := 1.39.12
 
 MODULE_NAME := xmlrpc-c
 SPEC_STORM_XMLRPC_C_FILE := storm-xmlrpc-c.src.spec
